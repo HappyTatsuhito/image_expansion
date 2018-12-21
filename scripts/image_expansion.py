@@ -20,7 +20,7 @@ MAGNIFICATION = 10
 LEARNING_RATIO = 7
 
 # テキストのパス
-TXT_PATH = '/home/demulab/src/darknet3/athome_cfg/'
+TXT_PATH = '/home/demulab/src/darknet/athome_cfg/'
 
 ######################################################
 
