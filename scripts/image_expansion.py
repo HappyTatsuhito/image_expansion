@@ -8,18 +8,21 @@ import sys
 import random
 
 
-#############　変更可能　#############
+#####################　変更可能　#####################
 
-#背景画像の相対パス
+# 背景画像の相対パス
 BGI_PATH = '/background_image/'
 
-#拡張倍率
+# 拡張倍率
 MAGNIFICATION = 10
 
-#trainの割合(e.g. train:test =7:3 ➤ 7)
+# trainの割合(e.g. train:test =7:3 ➤ 7)
 LEARNING_RATIO = 7
 
-######################################
+# テキストのパス
+TXT_PATH = '/home/demulab/src/darknet3/athome_cfg/'
+
+######################################################
 
 
 PKG_DIR = os.getcwd()[:-8]
@@ -284,7 +287,7 @@ if __name__ == '__main__':
                     txt = str(int(file_num)) + label_text
                     label_txt.write(txt)
                     label_txt.close()
-                    learning_txt = '/home/demulab/src/darknet3/athome_cfg/' + file_num + '/' + str(int(file_num)) + '_' + str(obj_count) + '_' + str(bg_count) + '.jpg\n'
+                    learning_txt = TXT_PATH + file_num + '/' + str(int(file_num)) + '_' + str(obj_count) + '_' + str(bg_count) + '.jpg\n'
                     t_txt = PKG_DIR + '/text/' + file_num + '/storage.txt'
                     learning_txt_file = open(t_txt, 'a')
                     learning_txt_file.write(learning_txt)
