@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 準備  
     $ cd src/tm_image_expantion  
 imageの中にフォルダ(名前は数字(例：000)でお願いします)を作成し、中に画像を入れてください  
@@ -43,17 +42,3 @@ image_expansion.pyを実行します
 learningにデータ拡張した画像、座標テキストが生成されます  
 textにtrain.txtとtest.txtが生成されます  
 
-=======
-# 概要  
-RoboCup@HomeリーグStoringGroceries用  
-
-# 実行方法  
-  $ rosrun tm_storing_groceries sg_start.sh  
-  $ roslaunch realsense_camera r200_nodelet_rgbd.launch  
-  $ roslaunch darknet_ros darknet_ros_gdb.launch  
-  $ rosrun tm_storing_groceries Navigation.py  
-  $ rosrun tm_storing_groceries Storing_Groceries.py  
-
-# その他  
-Navigation.pyとStoring_Groceries.pyは毎回立ち上げ直してください  
->>>>>>> 9ff50d0b57b02d0be79cdb00b72e38eb0041780f
