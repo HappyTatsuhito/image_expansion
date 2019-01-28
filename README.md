@@ -29,10 +29,10 @@ image_expansion.pyを実行します
 	
 　　　　　　色相の範囲(H)　彩度の範囲(S)　明度の範囲(V)  
 
-　　LOWER　　 t：増加　　　　y：増加　　　　u：増加  
+　　LOWER　　t：増加　　　　y：増加　　　　u：増加  
 　　　　　　　g：減少　　　　h：減少　　　　j：減少  
 
-　　UPPER　　 i：増加　　　　o：増加　　　　p：増加  
+　　UPPER　　i：増加　　　　o：増加　　　　p：増加  
 　　　　　　　k：減少　　　　l：減少　　　　;：減少  
 
 
