@@ -54,24 +54,24 @@ def extractObjectArea(img):
         print '\nCOLOR_LOWER : ', COLOR_LOWER
         print 'COLOR_UPPER : ', COLOR_UPPER
         print 'Brightness : ', OBJ_GAMMA
-        print '\n-------------------------------'
+        print '\n---------------------------------------------------'
         print 'Keyboard menu :'
         print '   - r - : increase brightness'
         print '   - f - : decrease brightness'
-        print '   - t - : increase lower[0]'
-        print '   - g - : decrease lower[0]'
-        print '   - y - : increase upper[0]'
-        print '   - h - : decrease upper[0]'
-        print '   - u - : increase lower[1]'
-        print '   - j - : decrease lower[1]'
-        print '   - i - : increase upper[1]'
-        print '   - k - : decrease upper[1]'
-        print '   - o - : increase lower[2]'
-        print '   - l - : decrease lower[2]'
-        print '   - p - : increase upper[2]'
-        print '   - ; - : decrease upper[2]'
+        print '   - t - : increase LOWER[0]'
+        print '   - g - : decrease LOWER[0]'
+        print '   - y - : increase LOWER[1]'
+        print '   - h - : decrease LOWER[1]'
+        print '   - u - : increase LOWER[2]'
+        print '   - j - : decrease LOWER[2]'
+        print '   - i - : increase UPPER[0]'
+        print '   - k - : decrease UPPER[0]'
+        print '   - o - : increase UPPER[1]'
+        print '   - l - : decrease UPPER[1]'
+        print '   - p - : increase UPPER[2]'
+        print '   - ; - : decrease UPPER[2]'
         print '   - s - : determine the image'
-        print '-------------------------------'
+        print '---------------------------------------------------'
         wb_img = cv2.bitwise_and(wb_img, wb_img, mask = opening_img)
         wb_img = cv2.cvtColor(wb_img, cv2.COLOR_HSV2BGR)
         obj_wb_img = cv2.bitwise_or(obj_img, wb_img)
@@ -92,25 +92,25 @@ def extractObjectArea(img):
                 COLOR_LOWER[0] = 180
             COLOR_LOWER[0] %= 181
         elif input_key == ord('y'):
+            COLOR_LOWER[1] += 1
+        elif input_key == ord('h'):
+            COLOR_LOWER[1] -= 1
+        elif input_key == ord('u'):
+            COLOR_LOWER[2] += 1
+        elif input_key == ord('j'):
+            COLOR_LOWER[2] -= 1
+        elif input_key == ord('i'):
             COLOR_UPPER[0] += 1
             COLOR_UPPER[0] %= 181
-        elif input_key == ord('h'):
+        elif input_key == ord('k'):
             COLOR_UPPER[0] -= 1
             if COLOR_UPPER[0] == 255:
                 COLOR_UPPER[0] = 180
             COLOR_UPPER[0] %= 181
-        elif input_key == ord('u'):
-            COLOR_LOWER[1] += 1
-        elif input_key == ord('j'):
-            COLOR_LOWER[1] -= 1
-        elif input_key == ord('i'):
-            COLOR_UPPER[1] += 1
-        elif input_key == ord('k'):
-            COLOR_UPPER[1] -= 1
         elif input_key == ord('o'):
-            COLOR_LOWER[2] += 1
+            COLOR_UPPER[1] += 1
         elif input_key == ord('l'):
-            COLOR_LOWER[2] -= 1
+            COLOR_UPPER[1] -= 1
         elif input_key == ord('p'):
             COLOR_UPPER[2] += 1
         elif input_key == ord(';'):
@@ -134,14 +134,16 @@ def extractObjectArea(img):
                 bg_img = cv2.cvtColor(bg_img, cv2.COLOR_HSV2BGR)
                 labeled_monochromatic_img = cv2.bitwise_or(labeled_obj_img, bg_img)
                 monochromatic_img = cv2.bitwise_or(obj_img, bg_img)
-                print '-------------------------------'
+                print '---------------------------------------------------'
                 print 'Keyboard menu :'
                 print '   - s - : save this image'
                 print '   - d - : delete this image'
                 print '   - c - : finish this program'
                 print '   - b - : return to set'
+                print '   Arrow keys : '
+                print '       left or right : change the background color'
                 print '   other : pass'
-                print '-------------------------------'
+                print '---------------------------------------------------'
                 second_input_key = viewImage(labeled_monochromatic_img)
                 if second_input_key == ord('b'):
                     input_key = 0
