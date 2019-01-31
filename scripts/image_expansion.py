@@ -20,7 +20,10 @@ MAGNIFICATION = 10
 LEARNING_RATIO = 7
 
 # テキストのパス
+'''研究室のパス
 TXT_PATH = '/home/demulab/src/darknet/athome_cfg/'
+'''
+TXT_PATH = '/home/athome/ConfigFiles/'
 
 ######################################################
 
@@ -44,8 +47,18 @@ def correctMask(receive_image, gray_scale):
         correct_image[i][0:639] = receive_image[i+1][1:640]
     return correct_image
 
+def correctMorph(receive_image, morph, kernel):
+    correct_image = np.ones((480*1.5, 640*1.5),np.uint8) * 0
+    output_image = np.ones((480, 640),np.uint8)
+    for i in range(480):
+        correct_image[119+i][159:799] = receive_image[i][0:640]
+    correct_image = cv2.morphologyEx(correct_image, morph, kernel)
+    for i in range(480):
+        output_image[i][0:640] = correct_image[119 + i][159:799]
+    return output_image
+
 def extractObjectArea(img):
-    kernel_c = np.ones((10,10),np.uint8)
+    kernel_c = np.ones((9,9),np.uint8)
     look_up_table = np.ones((256, 1), dtype = 'uint8' ) * 0
     input_key = 0
     while input_key != ord('s'):
@@ -61,7 +74,7 @@ def extractObjectArea(img):
         else:
             img_mask= cv2.inRange(img,COLOR_LOWER,COLOR_UPPER)
         opening_img = cv2.morphologyEx(img_mask, cv2.MORPH_CLOSE, kernel_c)
-        opening_img = correctMask(opening_img, 0)
+        #opening_img = correctMask(opening_img, 255)
         reverced_img = cv2.bitwise_not(opening_img)
         obj_img = cv2.bitwise_and(img, img, mask = reverced_img)
         obj_img = cv2.cvtColor(obj_img, cv2.COLOR_HSV2BGR)
@@ -180,9 +193,8 @@ def createLabel(reverced_img, obj_img):
     black_img = cv2.cvtColor(black_img, cv2.COLOR_BGR2GRAY)
     black_img = cv2.rectangle(black_img, (obj_x,obj_y), (obj_x+obj_w,obj_y+obj_h),(255,255,255),-1)
     reverced_img = cv2.bitwise_and(reverced_img, black_img)
-    kernel_c = np.ones((30,30),np.uint8)
-    reverced_img = cv2.morphologyEx(reverced_img, cv2.MORPH_CLOSE, kernel_c)
-    reverced_img = correctMask(reverced_img, 255)
+    kernel_c = np.ones((5,5),np.uint8)
+    reverced_img = correctMorph(reverced_img, cv2.MORPH_CLOSE, kernel_c)
     obj_img = cv2.bitwise_and(img, img, mask = reverced_img)
     obj_img = cv2.cvtColor(obj_img, cv2.COLOR_HSV2BGR)
     opening_img = cv2.bitwise_not(reverced_img)
