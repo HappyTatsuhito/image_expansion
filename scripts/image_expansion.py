@@ -8,7 +8,7 @@ import sys
 import random
 
 
-#####################　変更可能　#####################
+####################　変更可能　####################
 
 # 背景画像の相対パス
 BGI_PATH = '/background_image/'
@@ -25,7 +25,7 @@ TXT_PATH = '/home/demulab/src/darknet/athome_cfg/'
 '''
 TXT_PATH = '/home/athome/ConfigFiles/'
 
-######################################################
+####################################################
 
 
 PKG_DIR = os.getcwd()[:-8]
